@@ -47,11 +47,19 @@ module Faker
       def country_code;  fetch('address.country_code');  end
 
       def latitude
-        ((rand * 180) - 90).to_s
+        coord = ((rand * 180) - 90).to_f
+        coord.round(12)
+        coord.to_s
       end
 
       def longitude
-        ((rand * 360) - 180).to_s
+        coord = ((rand * 360) - 180).to_f
+        if coord > 100 || coord < 100
+          coord.round(12)
+        else
+          coord.round(13)
+        end
+        coord.to_s        
       end
 
     end
